@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'dart:ui';
-import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
@@ -50,9 +49,7 @@ class TwoPaneDemoState extends State<TwoPaneDemo> with RestorationMixin {
   Widget build(BuildContext context) {
     var panePriority = TwoPanePriority.both;
     if (widget.type == TwoPaneDemoType.smallScreen) {
-      panePriority = _currentIndex.value == -1
-          ? TwoPanePriority.start
-          : TwoPanePriority.end;
+      panePriority = _currentIndex.value == -1 ? TwoPanePriority.start : TwoPanePriority.end;
     }
     return SimulateScreen(
       type: widget.type,
@@ -139,9 +136,7 @@ class DetailsPane extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: onClose == null
-            ? null
-            : IconButton(icon: const Icon(Icons.close), onPressed: onClose),
+        leading: onClose == null ? null : IconButton(icon: const Icon(Icons.close), onPressed: onClose),
         title: Text(
           GalleryLocalizations.of(context)!.demoTwoPaneDetails,
         ),
@@ -152,8 +147,7 @@ class DetailsPane extends StatelessWidget {
           child: Text(
             selectedIndex == -1
                 ? GalleryLocalizations.of(context)!.demoTwoPaneSelectItem
-                : GalleryLocalizations.of(context)!
-                    .demoTwoPaneItemDetails(selectedIndex),
+                : GalleryLocalizations.of(context)!.demoTwoPaneItemDetails(selectedIndex),
           ),
         ),
       ),
@@ -173,10 +167,13 @@ class SimulateScreen extends StatelessWidget {
 
   // An approximation of a real foldable
   static const double foldableAspectRatio = 20 / 18;
+
   // 16x9 candy bar phone
   static const double singleScreenAspectRatio = 9 / 16;
+
   // Taller desktop / tablet
   static const double tabletAspectRatio = 4 / 3;
+
   // How wide should the hinge be, as a proportion of total width
   static const double hingeProportion = 1 / 35;
 

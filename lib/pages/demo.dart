@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,8 +81,7 @@ class GalleryDemoPage extends StatefulWidget {
   State<GalleryDemoPage> createState() => _GalleryDemoPageState();
 }
 
-class _GalleryDemoPageState extends State<GalleryDemoPage>
-    with RestorationMixin, TickerProviderStateMixin {
+class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin, TickerProviderStateMixin {
   final RestorableInt _demoStateIndex = RestorableInt(_DemoState.normal.index);
   final RestorableInt _configIndex = RestorableInt(0);
 
@@ -148,17 +146,14 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
     if (_demoStateIndex.value == newStateIndex && isDisplayDesktop(context)) {
       if (_demoStateIndex.value == _DemoState.fullscreen.index) {
         setStateAndUpdate(() {
-          _demoStateIndex.value =
-              _hasOptions ? _DemoState.options.index : _DemoState.info.index;
+          _demoStateIndex.value = _hasOptions ? _DemoState.options.index : _DemoState.info.index;
         });
       }
       return;
     }
 
     setStateAndUpdate(() {
-      _demoStateIndex.value = _demoStateIndex.value == newStateIndex
-          ? _DemoState.normal.index
-          : newStateIndex;
+      _demoStateIndex.value = _demoStateIndex.value == newStateIndex ? _DemoState.normal.index : newStateIndex;
     });
   }
 
@@ -188,15 +183,12 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
   void _resolveState(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
     final isFoldable = isDisplayFoldable(context);
-    if (_DemoState.values[_demoStateIndex.value] == _DemoState.fullscreen &&
-        !isDesktop) {
+    if (_DemoState.values[_demoStateIndex.value] == _DemoState.fullscreen && !isDesktop) {
       // Do not allow fullscreen state for mobile.
       _demoStateIndex.value = _DemoState.normal.index;
-    } else if (_DemoState.values[_demoStateIndex.value] == _DemoState.normal &&
-        (isDesktop || isFoldable)) {
+    } else if (_DemoState.values[_demoStateIndex.value] == _DemoState.normal && (isDesktop || isFoldable)) {
       // Do not allow normal state for desktop.
-      _demoStateIndex.value =
-          _hasOptions ? _DemoState.options.index : _DemoState.info.index;
+      _demoStateIndex.value = _hasOptions ? _DemoState.options.index : _DemoState.info.index;
     } else if (isDesktop != _isDesktop) {
       _isDesktop = isDesktop;
       // When going from desktop to mobile, return to normal state.
@@ -245,9 +237,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
               onTap: () => _handleTap(_DemoState.options),
               child: Icon(
                 Icons.tune,
-                color: currentDemoState == _DemoState.options
-                    ? selectedIconColor
-                    : iconColor,
+                color: currentDemoState == _DemoState.options ? selectedIconColor : iconColor,
               ),
             ),
             tooltip: localizations.demoOptionsTooltip,
@@ -256,17 +246,13 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
         IconButton(
           icon: const Icon(Icons.info),
           tooltip: localizations.demoInfoTooltip,
-          color: currentDemoState == _DemoState.info
-              ? selectedIconColor
-              : iconColor,
+          color: currentDemoState == _DemoState.info ? selectedIconColor : iconColor,
           onPressed: () => _handleTap(_DemoState.info),
         ),
         IconButton(
           icon: const Icon(Icons.code),
           tooltip: localizations.demoCodeTooltip,
-          color: currentDemoState == _DemoState.code
-              ? selectedIconColor
-              : iconColor,
+          color: currentDemoState == _DemoState.code ? selectedIconColor : iconColor,
           onPressed: () => _handleTap(_DemoState.code),
         ),
         IconButton(
@@ -279,9 +265,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
           IconButton(
             icon: const Icon(Icons.fullscreen),
             tooltip: localizations.demoFullscreenTooltip,
-            color: currentDemoState == _DemoState.fullscreen
-                ? selectedIconColor
-                : iconColor,
+            color: currentDemoState == _DemoState.fullscreen ? selectedIconColor : iconColor,
             onPressed: () => _handleTap(_DemoState.fullscreen),
           ),
         SizedBox(width: appBarPadding),
@@ -290,10 +274,8 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
 
     final mediaQuery = MediaQuery.of(context);
     final bottomSafeArea = mediaQuery.padding.bottom;
-    final contentHeight = mediaQuery.size.height -
-        mediaQuery.padding.top -
-        mediaQuery.padding.bottom -
-        appBar.preferredSize.height;
+    final contentHeight =
+        mediaQuery.size.height - mediaQuery.padding.top - mediaQuery.padding.bottom - appBar.preferredSize.height;
     final maxSectionHeight = isDesktop ? contentHeight : contentHeight - 64;
     final horizontalPadding = isDesktop ? mediaQuery.size.width * 0.12 : 0.0;
     const maxSectionWidth = 420.0;
@@ -393,8 +375,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage>
       final isDemoNormal = currentDemoState == _DemoState.normal;
       // Add a tap gesture to collapse the currently opened section.
       demoContent = Semantics(
-        label:
-            '${GalleryLocalizations.of(context)!.demo}, ${widget.demo.title}',
+        label: '${GalleryLocalizations.of(context)!.demo}, ${widget.demo.title}',
         child: MouseRegion(
           cursor: isDemoNormal ? MouseCursor.defer : SystemMouseCursors.click,
           child: GestureDetector(
@@ -554,8 +535,7 @@ class _DemoSectionOptions extends StatelessWidget {
                 GalleryLocalizations.of(context)!.demoOptionsTooltip,
                 style: textTheme.headlineMedium!.apply(
                   color: colorScheme.onSurface,
-                  fontSizeDelta:
-                      isDisplayDesktop(context) ? desktopDisplay1FontDelta : 0,
+                  fontSizeDelta: isDisplayDesktop(context) ? desktopDisplay1FontDelta : 0,
                 ),
               ),
             ),
@@ -612,8 +592,7 @@ class _DemoSectionOptionsItem extends StatelessWidget {
           child: Text(
             title,
             style: Theme.of(context).textTheme.bodyMedium!.apply(
-                  color:
-                      isSelected ? colorScheme.primary : colorScheme.onSurface,
+                  color: isSelected ? colorScheme.primary : colorScheme.onSurface,
                 ),
           ),
         ),
@@ -659,8 +638,7 @@ class _DemoSectionInfo extends StatelessWidget {
                 title,
                 style: textTheme.headlineMedium!.apply(
                   color: colorScheme.onSurface,
-                  fontSizeDelta:
-                      isDisplayDesktop(context) ? desktopDisplay1FontDelta : 0,
+                  fontSizeDelta: isDisplayDesktop(context) ? desktopDisplay1FontDelta : 0,
                 ),
               ),
               const SizedBox(height: 12),
@@ -704,8 +682,7 @@ class DemoWrapper extends StatelessWidget {
             platform: GalleryOptions.of(context).platform,
           ),
           child: CupertinoTheme(
-            data: const CupertinoThemeData()
-                .copyWith(brightness: Brightness.light),
+            data: const CupertinoThemeData().copyWith(brightness: Brightness.light),
             child: ApplyTextOptions(
               child: Builder(builder: buildRoute),
             ),
@@ -760,8 +737,7 @@ class CodeDisplayPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            GalleryLocalizations.of(context)!
-                .demoCodeViewerCopiedToClipboardMessage,
+            GalleryLocalizations.of(context)!.demoCodeViewerCopiedToClipboardMessage,
           ),
         ),
       );
@@ -771,8 +747,7 @@ class CodeDisplayPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            GalleryLocalizations.of(context)!
-                .demoCodeViewerFailedToCopyToClipboardMessage(exception),
+            GalleryLocalizations.of(context)!.demoCodeViewerFailedToCopyToClipboardMessage(exception),
           ),
         ),
       );
@@ -782,9 +757,7 @@ class CodeDisplayPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: isDesktop
-              ? const EdgeInsets.only(bottom: 8)
-              : const EdgeInsets.symmetric(vertical: 8),
+          padding: isDesktop ? const EdgeInsets.only(bottom: 8) : const EdgeInsets.symmetric(vertical: 8),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white.withOpacity(0.15),
