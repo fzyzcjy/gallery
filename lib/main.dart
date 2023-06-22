@@ -18,6 +18,7 @@ import 'package:gallery/routes.dart';
 import 'package:gallery/themes/gallery_theme_data.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:screen_recorder/screen_recorder.dart';
 
 import 'firebase_options.dart';
 import 'layout/adaptive.dart';
@@ -45,7 +46,9 @@ void main() async {
     };
   }
 
-  runApp(const GalleryApp());
+  await ScreenRecorder.instance.setup();
+
+  runApp(const ScreenRecorderWidget(child: GalleryApp()));
 }
 
 class GalleryApp extends StatelessWidget {
@@ -96,8 +99,7 @@ class GalleryApp extends StatelessWidget {
               deviceLocale = locales?.first;
               return basicLocaleListResolution(locales, supportedLocales);
             },
-            onGenerateRoute: (settings) =>
-                RouteConfiguration.onGenerateRoute(settings, hasHinge),
+            onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
           );
         },
       ),
