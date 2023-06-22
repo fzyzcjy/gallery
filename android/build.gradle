@@ -39,6 +39,15 @@ subprojects {
             lockAllConfigurations()
         }
     }
+
+    // #9614, https://github.com/flutter/gallery/issues/899#issuecomment-1427994192
+    afterEvaluate {
+        if (plugins.hasPlugin('com.android.library')) {
+            dependencies {
+                implementation "io.flutter:flutter_embedding_profile:+"
+            }
+        }
+    }
 }
 
 tasks.register("clean", Delete) {
