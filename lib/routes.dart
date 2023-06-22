@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery/deferred_widget.dart';
@@ -60,21 +61,24 @@ class RouteConfiguration {
     Path(
       r'^' + rally_routes.homeRoute,
       (context, match) => StudyWrapper(
-        study: DeferredWidget(rally.loadLibrary, () => rally.RallyApp()), // ignore: prefer_const_constructors
+        study: DeferredWidget(rally.loadLibrary,
+            () => rally.RallyApp()), // ignore: prefer_const_constructors
       ),
       openInSecondScreen: true,
     ),
     Path(
       r'^' + shrine_routes.homeRoute,
       (context, match) => StudyWrapper(
-        study: DeferredWidget(shrine.loadLibrary, () => shrine.ShrineApp()), // ignore: prefer_const_constructors
+        study: DeferredWidget(shrine.loadLibrary,
+            () => shrine.ShrineApp()), // ignore: prefer_const_constructors
       ),
       openInSecondScreen: true,
     ),
     Path(
       r'^' + crane_routes.defaultRoute,
       (context, match) => StudyWrapper(
-        study: DeferredWidget(crane.loadLibrary, () => crane.CraneApp(), // ignore: prefer_const_constructors
+        study: DeferredWidget(crane.loadLibrary,
+            () => crane.CraneApp(), // ignore: prefer_const_constructors
             placeholder: const DeferredLoadingPlaceholder(name: 'Crane')),
       ),
       openInSecondScreen: true,
@@ -92,7 +96,8 @@ class RouteConfiguration {
     Path(
       r'^' + reply_routes.homeRoute,
       // ignore: prefer_const_constructors
-      (context, match) => const StudyWrapper(study: reply.ReplyApp(), hasBottomNavBar: true),
+      (context, match) =>
+          const StudyWrapper(study: reply.ReplyApp(), hasBottomNavBar: true),
       openInSecondScreen: true,
     ),
     Path(
@@ -179,7 +184,12 @@ class TwoPanePageRoute<T> extends OverlayRoute<T> {
       if (hinge == null) {
         return builder.call(context);
       } else {
-        return Positioned(top: 0, left: hinge.right, right: 0, bottom: 0, child: builder.call(context));
+        return Positioned(
+            top: 0,
+            left: hinge.right,
+            right: 0,
+            bottom: 0,
+            child: builder.call(context));
       }
     });
   }

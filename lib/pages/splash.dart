@@ -4,6 +4,7 @@
 
 import 'dart:math';
 
+import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/constants.dart';
@@ -42,7 +43,8 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late int _effect;
   final _random = Random();
@@ -65,7 +67,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   };
 
   bool get _isSplashVisible {
-    return _controller.status == AnimationStatus.completed || _controller.status == AnimationStatus.forward;
+    return _controller.status == AnimationStatus.completed ||
+        _controller.status == AnimationStatus.forward;
   }
 
   @override
@@ -75,10 +78,11 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     // If the number of included effects changes, this number should be changed.
     _effect = _random.nextInt(_effectDurations.length) + 1;
 
-    _controller = AnimationController(duration: splashPageAnimationDuration, vsync: this)
-      ..addListener(() {
-        setState(() {});
-      });
+    _controller =
+        AnimationController(duration: splashPageAnimationDuration, vsync: this)
+          ..addListener(() {
+            setState(() {});
+          });
   }
 
   @override
@@ -91,7 +95,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     BuildContext context,
     BoxConstraints constraints,
   ) {
-    final height = constraints.biggest.height - (isDisplayDesktop(context) ? homePeekDesktop : homePeekMobile);
+    final height = constraints.biggest.height -
+        (isDisplayDesktop(context) ? homePeekDesktop : homePeekMobile);
     return RelativeRectTween(
       begin: const RelativeRect.fromLTRB(0, 0, 0, 0),
       end: RelativeRect.fromLTRB(0, height, 0, 0),
@@ -152,7 +157,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                       _controller.forward();
                     }
                   },
-                  child: _SplashBackLayer(isSplashCollapsed: !_isSplashVisible, effect: _effect),
+                  child: _SplashBackLayer(
+                      isSplashCollapsed: !_isSplashVisible, effect: _effect),
                 ),
               );
             } else {

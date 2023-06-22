@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:adaptive_breakpoints/adaptive_breakpoints.dart';
+import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/material.dart';
 
 /// The maximum width taken up by each item on the home screen.
@@ -17,7 +18,8 @@ const maxHomeItemWidth = 1400.0;
 ///
 /// Used to build adaptive and responsive layouts.
 bool isDisplayDesktop(BuildContext context) =>
-    !isDisplayFoldable(context) && getWindowType(context) >= AdaptiveWindowType.medium;
+    !isDisplayFoldable(context) &&
+    getWindowType(context) >= AdaptiveWindowType.medium;
 
 /// Returns boolean value whether the window is considered medium size.
 ///
