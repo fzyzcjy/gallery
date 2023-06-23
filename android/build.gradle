@@ -33,9 +33,10 @@ subprojects {
     afterEvaluate {
         if (plugins.hasPlugin('com.android.library')) {
             dependencies {
-//                implementation "io.flutter:flutter_embedding_profile:+"
-                // for non-profile
-                implementation "io.flutter:flutter_embedding_debug:+"
+                // for debug
+//                implementation "io.flutter:flutter_embedding_debug:+"
+                // for profile
+                implementation "io.flutter:flutter_embedding_profile:+"
             }
         }
     }
