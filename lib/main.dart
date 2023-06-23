@@ -63,6 +63,11 @@ class GalleryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // disable SnapshotWidget before #9624 is implemented, i.e. record the ui.Image generated
+    // by Scene.toImageSync / Scene.toImage properly
+    const pageTransitionsTheme = PageTransitionsTheme(
+        builders: <TargetPlatform, PageTransitionsBuilder>{TargetPlatform.android: CupertinoPageTransitionsBuilder()});
+
     return ModelBinding(
       initialModel: GalleryOptions(
         themeMode: ThemeMode.system,
@@ -84,9 +89,11 @@ class GalleryApp extends StatelessWidget {
             themeMode: options.themeMode,
             theme: GalleryThemeData.lightThemeData.copyWith(
               platform: options.platform,
+              pageTransitionsTheme: pageTransitionsTheme,
             ),
             darkTheme: GalleryThemeData.darkThemeData.copyWith(
               platform: options.platform,
+              pageTransitionsTheme: pageTransitionsTheme,
             ),
             localizationsDelegates: const [
               ...GalleryLocalizations.localizationsDelegates,
