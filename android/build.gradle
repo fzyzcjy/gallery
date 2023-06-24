@@ -29,17 +29,17 @@ allprojects {
 
 rootProject.buildDir = '../build'
 subprojects {
-//    // #9614, https://github.com/flutter/gallery/issues/899#issuecomment-1427994192
-//    afterEvaluate {
-//        if (plugins.hasPlugin('com.android.library')) {
-//            dependencies {
-//                // for debug
-////                implementation "io.flutter:flutter_embedding_debug:+"
-//                // for profile
-//                implementation "io.flutter:flutter_embedding_profile:+"
-//            }
-//        }
-//    }
+    // #9614, https://github.com/flutter/gallery/issues/899#issuecomment-1427994192
+    afterEvaluate {
+        if (plugins.hasPlugin('com.android.library')) {
+            dependencies {
+                // for debug
+//                implementation "io.flutter:flutter_embedding_debug:+"
+                // for profile
+                implementation "io.flutter:flutter_embedding_profile:+"
+            }
+        }
+    }
 
     project.buildDir = "${rootProject.buildDir}/${project.name}"
     project.evaluationDependsOn(':app')

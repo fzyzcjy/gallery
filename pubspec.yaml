@@ -33,8 +33,10 @@ dependencies:
   provider: ^6.0.2
   rally_assets: ^3.0.1
   scoped_model: ^2.0.0
-  fast_screen_recorder:
-    path: /Users/tom/RefCode/flutter_screen_recorder/packages/fast_screen_recorder
+#  fast_screen_recorder:
+#    path: /Users/tom/RefCode/flutter_screen_recorder/packages/fast_screen_recorder
+  screen_recorder:
+    path: /Users/tom/RefCode/flutter_screen_recorder/vector_impl/screen_recorder
   shrine_images: ^2.0.1
   transparent_image: ^2.0.1
   url_launcher: ^6.1.2
