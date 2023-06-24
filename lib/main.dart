@@ -3,6 +3,9 @@
 // found in the LICENSE file.
 
 import 'package:dual_screen/dual_screen.dart';
+
+// import 'package:screen_recorder/screen_recorder.dart';
+import 'package:fast_screen_recorder/fast_screen_recorder.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -18,7 +21,6 @@ import 'package:gallery/routes.dart';
 import 'package:gallery/themes/gallery_theme_data.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:screen_recorder/screen_recorder.dart';
 
 import 'firebase_options.dart';
 import 'layout/adaptive.dart';
@@ -46,9 +48,10 @@ void main() async {
     };
   }
 
-  await ScreenRecorder.instance.setup();
+  // await ScreenRecorder.instance.setup();
+  // runApp(const ScreenRecorderWidget(child: GalleryApp()));
 
-  runApp(const ScreenRecorderWidget(child: GalleryApp()));
+  runApp(const FastScreenRecorderDemoWidget(child: GalleryApp()));
 }
 
 class GalleryApp extends StatelessWidget {
