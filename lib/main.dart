@@ -4,7 +4,7 @@
 
 import 'package:dual_screen/dual_screen.dart';
 
-// import 'package:fast_screen_recorder/fast_screen_recorder.dart';
+import 'package:fast_screen_recorder/fast_screen_recorder.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -49,9 +49,7 @@ void main() async {
   }
 
   await ScreenRecorder.instance.setup();
-  runApp(const ScreenRecorderWidget(child: GalleryApp()));
-
-  // runApp(const FastScreenRecorderDemoWidget(child: GalleryApp()));
+  runApp(const FastScreenRecorderDemoWidget(child: ScreenRecorderWidget(child: GalleryApp())));
 }
 
 class GalleryApp extends StatelessWidget {
