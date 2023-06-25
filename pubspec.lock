@@ -622,6 +622,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.0"
+  screen_recorder:
+    dependency: "direct main"
+    description:
+      path: "/Users/tom/RefCode/flutter_screen_recorder/vector_impl/screen_recorder"
+      relative: false
+    source: path
+    version: "0.0.1"
   shelf:
     dependency: transitive
     description:
