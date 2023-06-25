@@ -55,6 +55,15 @@ dev_dependencies:
   test: ^1.21.1
   web_benchmarks: ^0.1.0
 
+dependency_overrides:
+  # Can be removed when
+  # https://github.com/creativecreatorormaybenot/wakelock/pull/203 is merged.
+  wakelock_windows:
+    git:
+      url: https://github.com/diegotori/wakelock
+      ref: 40464c75e908f57f458597ef4912f5273ab89b1a
+      path: wakelock_windows
+
 flutter:
   generate: true # Enables generation of localized strings from arb files
   uses-material-design: true
